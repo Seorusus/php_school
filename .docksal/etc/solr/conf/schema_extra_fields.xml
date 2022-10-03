@@ -1,0 +1,13 @@
+<dynamicField name="tcngramm_X3b_en_*" type="fulltext_ngram_en" indexed="true" stored="true" multiValued="false"/>
+<dynamicField name="ts_X3b_en_*" type="text_und" indexed="true" stored="true" multiValued="false" termVectors="false"/>
+<dynamicField name="tm_X3b_en_*" type="text_und" indexed="true" stored="true" multiValued="true" termVectors="false"/>
+
+<dynamicField name="tcngramm_X3b_de_*" type="fulltext_ngram_de" indexed="true" stored="true" multiValued="false"/>
+<dynamicField name="ts_X3b_de_*" type="text_de" indexed="true" stored="true" multiValued="false" termVectors="false"/>
+<dynamicField name="tm_X3b_de_*" type="text_de" indexed="true" stored="true" multiValued="true" termVectors="false"/>
+
+<dynamicField name="tcngramm_X3b_fr_*" type="fulltext_ngram_fr" indexed="true" stored="true" multiValued="false"/>
+<dynamicField name="ts_X3b_fr_*" type="text_fr" indexed="true" stored="true" multiValued="false" termVectors="false"/>
+<dynamicField name="tm_X3b_fr_*" type="text_fr" indexed="true" stored="true" multiValued="true" termVectors="false"/>
+
+<field name="boost_document" type="float" indexed="true" stored="true" multiValued="false"/>

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+is_windows()
+{
+	local res=$(uname | grep 'CYGWIN_NT')
+	if [[ "$res" != "" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+set -e
+
+TESTS_YML="/.docksal/docksal-tests.yml"
+SEPARATOR=':'; is_windows && SEPARATOR=';'
+OLD_COMPOSE_FILE=${COMPOSE_FILE}
+NEW_COMPOSE_FILE="${OLD_COMPOSE_FILE}${SEPARATOR}${PROJECT_ROOT}${TESTS_YML}"
+COMPOSE_FILE=${NEW_COMPOSE_FILE} fin start
+fin blt "$@"
+COMPOSE_FILE=${OLD_COMPOSE_FILE} fin start

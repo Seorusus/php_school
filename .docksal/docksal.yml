@@ -1,0 +1,59 @@
+version: "2.1"
+
+services:
+  # MailHog
+  mail:
+    extends:
+      file: ${HOME}/.docksal/stacks/services.yml
+      service: mail
+  # Memcached
+  memcached:
+    extends:
+      file: ${HOME}/.docksal/stacks/services.yml
+      service: memcached
+  # Solr
+  solr:
+    hostname: solr
+    image: solr:6.6.2-alpine
+    labels:
+    - io.docksal.virtual-host=solr.${VIRTUAL_HOST}
+    volumes:
+      -  ${PROJECT_ROOT}/.docksal/etc/solr:/var/lib/solr/conf:ro
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - default
+      - "/var/lib/solr/conf"
+    environment:
+      - SOLR_JAVA_MEM
+    # Blackfire
+#  blackfire:
+#    extends:
+#      file: ${HOME}/.docksal/stacks/services.yml
+#      service: blackfire
+#  # Varnish
+#  varnish:
+#    hostname: varnish
+#    image: andrewfall/varnish_extended
+#    labels:
+#        - io.docksal.virtual-host=varnish.${VIRTUAL_HOST}
+#    volumes:
+#      - ${PROJECT_ROOT}/.docksal/etc/varnish/default.vcl:/etc/varnish/default.vcl
+  cli:
+    volumes:
+      - ${PROJECT_ROOT}/secrets:/mnt/secrets
+    environment:
+      - COMPOSER_DEFAULT_VERSION
+
+  pma:
+    hostname: pma
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=drupal
+      - PMA_PASSWORD=drupal
+    labels:
+      - io.docksal.virtual-host=pma-${VIRTUAL_HOST}
+
+volumes:
+  solr_core:

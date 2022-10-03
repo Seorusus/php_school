@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#: exec_target = cli
+
+/var/www/vendor/bin/blt "$@"
