@@ -7,9 +7,10 @@ class User {
     /**
      * @param mixed $age
      */
-    public function setAge($age)
-    {
-        return $age;
+    public function setAge($age) {
+        if($age >18) {
+            return $age;
+        }
     }
 }
 
