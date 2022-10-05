@@ -9,8 +9,11 @@ class User {
      */
     public function setAge($age) {
         if($age >18) {
-            return $age;
+            return 'New age value: ' . $age;
+        } else {
+            echo 'It is forbidden';
         }
+        return '';
     }
 }
 
@@ -19,4 +22,4 @@ $newUser = new User();
 $newUser->name = 'John';
 $newUser->age = '25';
 
-print_r('нове значення віку: ' . $newUser->setAge(30));
+print_r($newUser->setAge(30));
