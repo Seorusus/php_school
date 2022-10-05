@@ -20,6 +20,14 @@ class Employee {
     public function checkAge($age) {
            return $age > 18;
     }
+
+    /**
+     * @param mixed $age
+     */
+    public function doubleSalary($salary)
+    {
+        return $salary * 2;
+    }
 }
 
 $firstPerson = new Employee();
@@ -35,4 +43,3 @@ $secondPerson->getAge('25');
 $secondPerson->getSalary('2000');
 
 print_r('Суму зарплат створених працівників ' . ($firstPerson->getSalary('1000') + $secondPerson->getSalary('2000')));
-
